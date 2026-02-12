@@ -54,11 +54,16 @@ const incrementViews = (req, res, next) => {
 // Insert incrementViews into the middleware stack
 app.use( incrementViews );
 
+// **********************************
 // Now we can add some route handlers. 
+// **********************************
 
 // This will serve static files from the 'public' directory at the root path. So if we have 'public/index.html', it will be served at '/'.
 app.use(express.static(path.join(__dirname, 'public'))); 
 
+// This route handler will never be called in this example because the static middleware above will serve index.html for the root path. 
+//  If index.html doesn't exist in the 'public' directory, then this will be called for the root path. 
+//  Rename index.html to something else to see this in action.
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
